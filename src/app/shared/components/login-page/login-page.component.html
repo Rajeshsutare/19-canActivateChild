@@ -1,0 +1,111 @@
+
+
+
+    <div class="section">
+        <div class="row">
+    
+            <form  *ngIf="isHavingAcc" class="signInform" >
+                <div class="card " >
+                    <div class="card-body">
+                        <h3 class="text-center my-3">Sign Up</h3>
+                        <div class="form-group">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                              
+                              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="sr-only" for="inlineFormInputGroupUsername">Password</label>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inlineFormInputGroupUsername">Confirm Password</label>
+                                    <div class="input-group">
+                                      
+                                      <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="password">
+                                      <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fa-solid fa-lock"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                  
+                                  <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Confirm Password">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary">Sign Up</button>
+                        </div>
+                        <p 
+                        
+                        (click)="isHavingAcc =!isHavingAcc"
+                        >
+                            <a href="javascript:;" class="btn btn-link">
+                                Go to Login
+                            </a>
+                        </p>
+                    </div>
+                </div>
+              </form>
+    
+            <form  *ngIf="!isHavingAcc" class="signInform">
+                <div class="card  " >
+                    <div class="card-body">
+                        <h3 class="text-center my-3">Login</h3>
+                        <div class="form-group">
+                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                            <div class="input-group">
+                              
+                              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="sr-only" for="inlineFormInputGroupUsername">Password</label>
+                                <div class="input-group">
+                                  
+                                  <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="password">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary"
+                            (click)="logIn()"
+                            >Sign In</button>
+                        </div>
+                        <p 
+                        (click)="isHavingAcc = !isHavingAcc"
+                        >
+                            <a href="javascript:;" class="btn btn-link">
+                                Not Have Account?
+                            </a>
+                        </p>
+                    </div>
+                </div>
+              </form>
+         </div>
+        </div>
+
