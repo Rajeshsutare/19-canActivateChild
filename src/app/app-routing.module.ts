@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { AdminsComponent } from './shared/components/admins/admins.component';
 import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component';
 import { UserRoleGuard } from './shared/services/user-role.guard';
+import { CanDeactivateGuard } from './shared/services/can-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
         path:':userId' , component:UserComponent
       },
       {
-        path:':userId/editUser' , component:EditUserComponent
+        path:':userId/editUser' , component:EditUserComponent,
+        canDeactivate:[CanDeactivateGuard],
       },
     ]
   },
@@ -56,7 +58,8 @@ const routes: Routes = [
         path:':productId' , component:ProductComponent
       },
       {
-        path:':productId/editProduct' , component:EditProductComponent
+        path:':productId/editProduct' , component:EditProductComponent,
+        canDeactivate:[CanDeactivateGuard],
       },
     ]
   },

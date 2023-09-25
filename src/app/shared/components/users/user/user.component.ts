@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Iuser } from 'src/app/shared/models/model';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -15,7 +16,8 @@ export class UserComponent implements OnInit {
 
   constructor(private _userService:UsersService,
               private _routes:ActivatedRoute,
-              private _router:Router
+              private _router:Router,
+              private _snackBar:MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -42,7 +44,8 @@ export class UserComponent implements OnInit {
   }
 
   onRemoveUser(id:string){
-    this._userService.deleteUSer(this.uId)
+    this._userService.deleteUSer(this.uId);
+    this._snackBar.open(`Product ${this.uObj.userName} Removed Successfully...`,'close')
   }
 
 

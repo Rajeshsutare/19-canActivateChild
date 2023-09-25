@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IprodStatus, Iproduct } from 'src/app/shared/models/model';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -15,10 +16,14 @@ export class EditProductComponent implements OnInit {
   public pobj!:Iproduct;
   public canEditProduct:boolean=true;
 
+  @ViewChild('prodValue') prodValue !: ElementRef<HTMLInputElement>;
+  @ViewChild('prodStatus') prodStatus !: ElementRef<HTMLSelectElement>;
+
   constructor(private _productsService:ProductsService,
               private _routes:ActivatedRoute,
               private _router:Router,
-              private _utilityService:UtilityService
+              private _utilityService:UtilityService,
+              private _snackBar:MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -51,6 +56,7 @@ export class EditProductComponent implements OnInit {
       canReturn: this.pobj.canReturn
     }
     this._productsService.updateProduct(pobj)
+    this._snackBar.open(`Product ${pname} updated Successfully...`,'close')
   }
 
   onAddProduct(pname:HTMLInputElement,pstatus:HTMLSelectElement){
@@ -61,6 +67,18 @@ export class EditProductComponent implements OnInit {
       canReturn: Math.random() >= 5 ? 1 : 0
     }
     this._productsService.addNewProduct(pobj)
+    this._snackBar.open(`Product ${pname.value} Added Successfully...`,'close')
   }
+
+  canDeactivate(){
+    if(this.pobj.prodName !== this.prodValue.nativeElement.value ||
+      this.pobj.ProdStatus !== this.prodStatus.nativeElement.value
+      ){
+      let getConfirm = confirm('Are You sure You want to Discard changes ?')
+     return getConfirm;
+    }else{
+      return true
+    }
+    }
 
 }

@@ -1,3 +1,4 @@
+import { Observable } from "rxjs";
 
 export interface Iuser {
     userName: string;
@@ -16,4 +17,9 @@ export enum IprodStatus {
     InProcess='InProcess',
     Dispatched='Dispatched',
     Delivered='Delivered'
+}
+
+
+export interface IcanDeactivate {
+    canDeactivate : () => boolean | Promise<boolean> | Observable<boolean>
 }

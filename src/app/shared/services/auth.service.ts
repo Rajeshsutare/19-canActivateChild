@@ -53,7 +53,6 @@ export class AuthService {
       this._snackBar.open('Invalid Username or Password !!!','close')
       this._router.navigate(['/'])
     }
-    
   }
 
   logOutFromApp(){

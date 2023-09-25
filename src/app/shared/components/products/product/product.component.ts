@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Iproduct } from 'src/app/shared/models/model';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -15,7 +16,8 @@ export class ProductComponent implements OnInit {
 
   constructor(private _productsService:ProductsService,
               private _routes:ActivatedRoute,
-              private _router:Router
+              private _router:Router,
+              private _snackBar:MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class ProductComponent implements OnInit {
   }
   onRemoveProduct(id:string){
     this._productsService.removeProduct(this.pid)
+    this._snackBar.open(`Product ${this.pObj.prodName} Removed Successfully...`,'close')
   }
 
   // onEditProduct(){
