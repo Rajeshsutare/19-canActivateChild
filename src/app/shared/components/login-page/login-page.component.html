@@ -17,8 +17,12 @@
                             <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
                             <div class="input-group">
                               
-                              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username"
-                              appBlockCopyPaste>
+                              <input type="email" 
+                              class="form-control" 
+                              id="inlineFormInputGroupUsername" 
+                              placeholder="Username"
+                              appBlockCopyPaste
+                              required>
                               <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <i class="fa-solid fa-user"></i>
@@ -33,7 +37,9 @@
                                     <label class="sr-only" for="inlineFormInputGroupUsername">Confirm Password</label>
                                     <div class="input-group">
                                       
-                                      <input type="text" class="form-control" id="password" placeholder="password"
+                                      <input [type]="passType ? 'password' : 'text'" class="form-control" id="password" placeholder="password"
+                                      pattern="(?=.*\d)(?=.*[\W_]).{7,}" title="Minimum of 7 characters. Should have at least one special character and one number."
+                                      required
                                       appBlockCopyPaste>
                                       <div class="input-group-prepend">
                                         <div class="input-group-text" 
@@ -47,8 +53,11 @@
                                 </div>
                                 <div class="input-group">
                                   
-                                  <input type="text" class="form-control" id="password" placeholder="Confirm Password"
-                                  appBlockCopyPaste>
+                                  <input [type]="passType ? 'password' : 'text'" class="form-control" id="password" placeholder="Confirm Password"
+                                  appBlockCopyPaste
+                                  pattern="(?=.*\d)(?=.*[\W_]).{7,}" title="Minimum of 7 characters. Should have at least one special character and one number."
+                                  required
+                                  >
                                   <div class="input-group-prepend">
                                     <div class="input-group-text" 
                                     (click)="onPassword()">
@@ -82,11 +91,11 @@
                         <div class="form-group">
                             <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
                             <div class="input-group">
-                              
-                              <input type="text" class="form-control" id="inlineFormInputGroupUsername" 
+                              <input type="email" class="form-control" id="inlineFormInputGroupUsername" 
                               placeholder="Username"
                               #username
                               appBlockCopyPaste
+                              required
                               >
                               <div class="input-group-prepend">
                                 <div class="input-group-text" 
@@ -107,6 +116,8 @@
                                   placeholder="password"
                                   #password
                                   appBlockCopyPaste
+                                  pattern="(?=.*\d)(?=.*[\W_]).{7,}" title="Minimum of 7 characters. Should have at least one special character and one number."
+                                  required
                                   >
                                   <div class="input-group-prepend">
                                     <div class="input-group-text" 

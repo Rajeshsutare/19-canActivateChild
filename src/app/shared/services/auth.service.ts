@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwIfEmpty } from 'rxjs';
+import { SnackBarService } from './snack-bar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ export class AuthService {
   public loginStatus:boolean=false;
 
   constructor(private _router:Router,
+              private _snackBar:MatSnackBar
           
     ) { }
 
@@ -32,22 +35,22 @@ export class AuthService {
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','admin')
       this._router.navigate(['dashboard'])
-      alert('Logged In Successfully !!!')
+      this._snackBar.open('Logged in Successfully...','close')
     }else if(username === 'jun@gmail.com' && password === 'zaq1ZAQ!'){
       this.loginStatus=true;
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','candidate')
       this._router.navigate(['dashboard'])
-      alert('Logged In Successfully !!!')
+      this._snackBar.open('Logged in Successfully...','close')
     }else if(username === 'Tony@gmail.com' && password === 'zaq1ZAQ!'){
       this.loginStatus=true;
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','superAdmin')
       this._router.navigate(['dashboard'])
-      alert('Logged In Successfully !!!')
+      this._snackBar.open('Logged in Successfully...','close')
     }
     else{
-      alert('Invalid Username or Password !!!')
+      this._snackBar.open('Invalid Username or Password !!!','close')
       this._router.navigate(['/'])
     }
     
