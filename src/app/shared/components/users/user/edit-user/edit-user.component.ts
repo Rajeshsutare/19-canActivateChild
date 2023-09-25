@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouteReuseStrategy, Router } from '@angular/router';
+import { ActivatedRoute, Params, RouteReuseStrategy, Router } from '@angular/router';
 import { Iuser } from 'src/app/shared/models/model';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
@@ -29,17 +29,19 @@ export class EditUserComponent implements OnInit {
     this.uobj = this._userService.getSingleUser(this.uid)
     console.log(this.uobj );
 
-    if(this._routes.snapshot.queryParams['editUser'] === 'admin'){
-       this.canEditUser = false;
+
+
+    if(this._routes.snapshot.queryParams['canEditUser'] === "admin"){
+     this.canEditUser = false
     }
     
   }
 
-  updateUser(uname:string){
+  updateUser(uname:string,uRole:HTMLSelectElement){
     let uobj:Iuser={
       userName: uname,
       userId: this.uid,
-      editStatus: this.uobj.editStatus
+      editStatus: uRole.value as 'admin' | 'candidate'
     }
     this._userService.updateUSerDetail(uobj)
   }

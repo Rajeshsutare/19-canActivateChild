@@ -10,18 +10,22 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   public isHavingAcc:boolean=false;
+  public visisble:boolean=true;
+  public passType:boolean=true;
 
   constructor(private _authService:AuthService,
               private _router:Router
     ) { }
 
   ngOnInit(): void {
-
   }
   
-  logIn(){
-    this._authService.loginToApp()
-    alert('Logged In successfully !!!')
-    this._router.navigate(['/dashboard'])
+  logIn(username:string,password:string){
+    this._authService.loginToApp(username,password)
+  }
+
+  onPassword(){
+    this.visisble = !this.visisble;
+    this.passType = !this.passType;
   }
 }

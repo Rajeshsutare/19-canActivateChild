@@ -3,11 +3,14 @@
     <div class="form-group">
         <input type="text" class="form-control" #prodValue
         [value]="pobj ? pobj.prodName : ''"
+        [disabled]="!canEditProduct"
         >
     </div>
     <div class="form-group">
         <select name="" id="" class="form-control"
-        [value]="pobj ? pobj.ProdStatus : ''"  #prodStatus
+        [value]="pobj ? pobj.ProdStatus : ''" 
+         #prodStatus
+         [disabled]="!canEditProduct"
         >
             <option value="">Select</option>
             <option value="InProcess">InProcess</option>
@@ -18,6 +21,7 @@
     <div class="text-center">
         <button class="btn btn-success" *ngIf="pid ; else noProduct"
         (click)="onUpdateProduct(prodValue.value,prodStatus)"
+        [disabled]="!canEditProduct"
         >Update Details</button>
 
 

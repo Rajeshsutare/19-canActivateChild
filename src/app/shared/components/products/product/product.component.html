@@ -9,7 +9,8 @@
 </ul>
 <div class="text-center">
     <button class="btn btn-primary mr-3"
-    (click)="onEditProduct()"
+    [routerLink]="['editProduct']"
+    [queryParamsHandling]="'preserve'"
     >Edit Product Details</button>
 
 

@@ -6,6 +6,7 @@
             <ul class="list-group my-5 text-center">
                 <li class="list-group-item" *ngFor="let p of productInfo"
                 [routerLink]="['/products', p.prodId]"
+                [queryParams]="{canEditProduct:p.ProdStatus}"
                 (click)="isSelected = p.prodId"
                 [ngClass]="
                 {

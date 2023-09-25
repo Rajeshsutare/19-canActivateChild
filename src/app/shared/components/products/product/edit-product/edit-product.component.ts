@@ -13,7 +13,7 @@ export class EditProductComponent implements OnInit {
 
   public pid!:string;
   public pobj!:Iproduct;
-  public canEditProduct:number=1
+  public canEditProduct:boolean=true;
 
   constructor(private _productsService:ProductsService,
               private _routes:ActivatedRoute,
@@ -28,14 +28,18 @@ export class EditProductComponent implements OnInit {
     this.pobj = this._productsService.getSingleProduct(this.pid)
     console.log(this.pobj);
     
-    this._routes.queryParams
-    .subscribe((queryParams:Params)=>{
-      console.log(queryParams);
-      if(queryParams.hasOwnProperty('canEditProduct')){
-        this.canEditProduct = +queryParams['canEditProduct']
-      }
+    // this._routes.queryParams
+    // .subscribe((queryParams:Params)=>{
+    //   console.log(queryParams);
+    //   if(queryParams.hasOwnProperty('canEditProduct')){
+    //     this.canEditProduct = +queryParams['canEditProduct']
+    //   }
       
-    })
+    // })
+
+    if(this._routes.snapshot.queryParams['canEditProduct'] === 'Delivered'){
+      this.canEditProduct=false
+    }
     
   }
 

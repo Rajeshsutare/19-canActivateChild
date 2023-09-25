@@ -1,6 +1,6 @@
 
 
-<form action="" class="mt-5">
+<form  class="mt-5">
     <div class="form-group">
         <input type="text" class="form-control"  #userValue
         [value]="uobj ? uobj.userName : ''"
@@ -19,7 +19,7 @@
     </div>
     <div class="text-center ">
         <button class="btn btn-success" *ngIf="uid ; else noUser"
-        (click)="updateUser(userValue.value)"
+        (click)="updateUser(userValue.value,role)"
         [disabled]="!canEditUser"
         >Update Details</button>
 

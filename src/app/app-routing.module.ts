@@ -11,18 +11,25 @@ import { EditUserComponent } from './shared/components/users/user/edit-user/edit
 import { ProductComponent } from './shared/components/products/product/product.component';
 import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { AdminsComponent } from './shared/components/admins/admins.component';
+import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component';
+import { UserRoleGuard } from './shared/services/user-role.guard';
 
 const routes: Routes = [
-
   {
-    path :'' , component:LoginPageComponent,
+    path :"" , component:LoginPageComponent,
   },
   {
     path :'dashboard' , component:DashboardComponent,
+    title:'dashboard',
+   
+    
   },
   {
     path:'users' , component:UsersComponent,
-    canActivateChild:[AuthGuard],
+    title:'users',
+    canActivate :[AuthGuard],
+    canActivateChild :[AuthGuard],
     children:[
       {
         path:'addNewUser' , component:EditUserComponent
@@ -38,7 +45,9 @@ const routes: Routes = [
 
   {
     path:'products' , component:ProductsComponent,
-    canActivateChild:[AuthGuard],
+    title:'products',
+    canActivate :[AuthGuard],
+    canActivateChild :[AuthGuard],
     children:[
       {
         path:'addProduct' , component:EditProductComponent
@@ -51,9 +60,33 @@ const routes: Routes = [
       },
     ]
   },
-
   {
-    path:'not-found',component:PageNotFoundComponent
+    path:'admins',component:AdminsComponent,
+    title:'Admins',
+    canActivate :[AuthGuard, UserRoleGuard],
+    data:{
+      userRole:['admin','superAdmin']
+    }
+    
+  },
+  {
+    path:'superAdmins' , component:SuperAdminsComponent,
+    title:'superAdmins',
+    canActivate :[AuthGuard,UserRoleGuard],
+    data:{
+      userRole:['superAdmin']
+    }
+  },
+  {
+    path:'not-found', component:PageNotFoundComponent,
+    title:'Page Not Found ',
+    data:{
+      msg:'Page Not Found !!!'
+    }
+  },
+  {
+    path:'**' ,
+   redirectTo : 'not-found'
   },
 ];
 

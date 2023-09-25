@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Iproduct } from 'src/app/shared/models/model';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
@@ -19,21 +19,27 @@ export class ProductComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.pid = this._routes.snapshot.params['productId']
-    console.log(this.pid );
-    this.pObj = this._productsService.getSingleProduct(this.pid)
-    console.log(this.pObj);
+    // this.pid = this._routes.snapshot.params['productId']
+    // console.log(this.pid );
+    // this.pObj = this._productsService.getSingleProduct(this.pid)
+    // console.log(this.pObj);
 
+    this._routes.params
+      .subscribe((params:Params)=>{
+        console.log(params);
+       this.pid= params['productId']
+        this.pObj = this._productsService.getSingleProduct(this.pid)
+      })
   }
   onRemoveProduct(id:string){
     this._productsService.removeProduct(this.pid)
   }
 
-  onEditProduct(){
-    this._router.navigate(['editProduct'],{
-      queryParamsHandling:'preserve',
-      relativeTo:this._routes
-    })
-  }
+  // onEditProduct(){
+  //   this._router.navigate(['editProduct'],{
+  //     queryParamsHandling:'preserve',
+  //     relativeTo:this._routes
+  //   })
+  // }
 
 }

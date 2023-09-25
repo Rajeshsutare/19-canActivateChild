@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Iuser } from 'src/app/shared/models/model';
 import { UsersService } from 'src/app/shared/services/users.service';
 
@@ -19,11 +19,19 @@ export class UserComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.uId = this._routes.snapshot.params['userId']
-    console.log(this.uId);
+  //  this.uId = this._routes.snapshot.params['userId']
+  //  console.log(this.uId);
+   
+  //  this.uObj = this._userService.getSingleUser(this.uId )
+  //  console.log(this.uObj);
 
-    this.uObj = this._userService.getSingleUser(this.uId)
-    console.log(this.uObj);
+   this._routes.params
+    .subscribe((params:Params)=>{
+      console.log(params);
+      this.uId= params['userId'];
+      this.uObj = this._userService.getSingleUser(this.uId )
+    })
+   
   }
 
   onEditUSer(){

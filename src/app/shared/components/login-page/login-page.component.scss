@@ -2,11 +2,12 @@
 
 .section{
 background-image:url('https://source.unsplash.com/random');
-
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
+color: #fff;
+background-color: #fff;
    position: fixed;
    top: 0;
    left: 0;
@@ -23,7 +24,13 @@ background-attachment: fixed;
         .card{
             background: none;
             border: none;
+
+           
         }
        
     }
+}
+
+ i{
+    cursor: pointer;
 }
