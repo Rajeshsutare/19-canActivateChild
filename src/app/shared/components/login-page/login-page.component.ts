@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { SnackBarService } from '../../services/snack-bar.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +15,8 @@ export class LoginPageComponent implements OnInit {
   public passType:boolean=true;
 
   constructor(private _authService:AuthService,
-              private _router:Router
+              private _router:Router,
+
     ) { }
 
   ngOnInit(): void {

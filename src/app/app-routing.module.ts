@@ -15,6 +15,8 @@ import { AdminsComponent } from './shared/components/admins/admins.component';
 import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component';
 import { UserRoleGuard } from './shared/services/user-role.guard';
 import { CanDeactivateGuard } from './shared/services/can-deactivate.guard';
+import { UserResolverService } from './shared/services/user-resolver.service';
+import { ResolverProductsService } from './shared/services/resolver-products.service';
 
 const routes: Routes = [
   {
@@ -23,8 +25,6 @@ const routes: Routes = [
   {
     path :'dashboard' , component:DashboardComponent,
     title:'dashboard',
-   
-    
   },
   {
     path:'users' , component:UsersComponent,
@@ -33,10 +33,11 @@ const routes: Routes = [
     canActivateChild :[AuthGuard],
     children:[
       {
-        path:'addNewUser' , component:EditUserComponent
+        path:'addNewUser' , component:EditUserComponent,
       },
       {
-        path:':userId' , component:UserComponent
+        path:':userId' , component:UserComponent,
+        resolve :{userData : UserResolverService}
       },
       {
         path:':userId/editUser' , component:EditUserComponent,
@@ -52,10 +53,11 @@ const routes: Routes = [
     canActivateChild :[AuthGuard],
     children:[
       {
-        path:'addProduct' , component:EditProductComponent
+        path:'addProduct' , component:EditProductComponent,
       },
       {
-        path:':productId' , component:ProductComponent
+        path:':productId' , component:ProductComponent,
+        resolve : {productData: ResolverProductsService}
       },
       {
         path:':productId/editProduct' , component:EditProductComponent,

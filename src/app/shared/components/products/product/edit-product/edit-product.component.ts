@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IprodStatus, Iproduct } from 'src/app/shared/models/model';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class EditProductComponent implements OnInit {
               private _routes:ActivatedRoute,
               private _router:Router,
               private _utilityService:UtilityService,
-              private _snackBar:MatSnackBar
+              private _snackBar:SnackBarService
     ) { }
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class EditProductComponent implements OnInit {
       canReturn: this.pobj.canReturn
     }
     this._productsService.updateProduct(pobj)
-    this._snackBar.open(`Product ${pname} updated Successfully...`,'close')
+    this._snackBar.openSnackBar(`Product ${pname} updated Successfully...`,'close')
   }
 
   onAddProduct(pname:HTMLInputElement,pstatus:HTMLSelectElement){
@@ -67,7 +68,7 @@ export class EditProductComponent implements OnInit {
       canReturn: Math.random() >= 5 ? 1 : 0
     }
     this._productsService.addNewProduct(pobj)
-    this._snackBar.open(`Product ${pname.value} Added Successfully...`,'close')
+    this._snackBar.openSnackBar(`Product ${pname.value} Added Successfully...`,'close')
   }
 
   canDeactivate(){

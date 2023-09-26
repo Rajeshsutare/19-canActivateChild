@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, RouteReuseStrategy, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IcanDeactivate, Iuser } from 'src/app/shared/models/model';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
 
@@ -23,7 +24,7 @@ export class EditUserComponent implements OnInit, IcanDeactivate {
               private _routes:ActivatedRoute,
               private _router:Router,
               private _utilityService:UtilityService,
-              private _snackBar:MatSnackBar
+              private _snackBar:SnackBarService
     ) { }
 
   ngOnInit(): void {
@@ -36,7 +37,6 @@ export class EditUserComponent implements OnInit, IcanDeactivate {
     if(this._routes.snapshot.queryParams['canEditUser'] === "admin"){
      this.canEditUser = false
     }
-    
   }
 
   updateUser(uname:string,uRole:HTMLSelectElement){
@@ -46,7 +46,7 @@ export class EditUserComponent implements OnInit, IcanDeactivate {
       editStatus: uRole.value as 'admin' | 'candidate'
     }
     this._userService.updateUSerDetail(uobj)
-    this._snackBar.open(` 'User Updated as ${uobj.userName} Successfully...' `,'close' )
+    this._snackBar.openSnackBar(` 'User Updated as ${uobj.userName} Successfully...' `,'close' )
   }
 
   addNewUser(uNew:HTMLInputElement,uRole:HTMLSelectElement){
@@ -56,7 +56,7 @@ export class EditUserComponent implements OnInit, IcanDeactivate {
       editStatus: uRole.value as 'admin' | 'candidate'
     }
     this._userService.adduser(uobj);
-    this._snackBar.open('New User Added Successfully...','close')
+    this._snackBar.openSnackBar('New User Added Successfully...','close')
   }
 
   canDeactivate(){
@@ -64,8 +64,8 @@ export class EditUserComponent implements OnInit, IcanDeactivate {
     this.uobj.editStatus !== this.role.nativeElement.value
     ){
     let getConfirm = confirm('Are You sure You want to Discard changes ?')
-   return getConfirm;
-   
+    return getConfirm;
+  
   }else{
     return true
   }

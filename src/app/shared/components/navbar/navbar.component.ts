@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../../services/snack-bar.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class NavbarComponent implements OnInit {
 
   constructor(private _authService:AuthService,
-              private _snackBar:MatSnackBar,
+              private _snackBar:SnackBarService,
     ) { }
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   logOut(){
     this._authService.logOutFromApp();
-    this._snackBar.open('Logged Out Successfully...','close')
+    this._snackBar.openSnackBar('Logged Out Successfully...','close')
   }
 
 }

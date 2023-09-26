@@ -19,7 +19,8 @@ export enum IprodStatus {
     Delivered='Delivered'
 }
 
-
 export interface IcanDeactivate {
     canDeactivate : () => boolean | Promise<boolean> | Observable<boolean>
 }
+
+

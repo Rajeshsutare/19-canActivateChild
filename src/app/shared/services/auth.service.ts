@@ -12,7 +12,7 @@ export class AuthService {
   public loginStatus:boolean=false;
 
   constructor(private _router:Router,
-              private _snackBar:MatSnackBar
+              private _snackBar:SnackBarService
           
     ) { }
 
@@ -35,22 +35,22 @@ export class AuthService {
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','admin')
       this._router.navigate(['dashboard'])
-      this._snackBar.open('Logged in Successfully...','close')
+      this._snackBar.openSnackBar('Logged in Successfully...','close')
     }else if(username === 'jun@gmail.com' && password === 'zaq1ZAQ!'){
       this.loginStatus=true;
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','candidate')
       this._router.navigate(['dashboard'])
-      this._snackBar.open('Logged in Successfully...','close')
+      this._snackBar.openSnackBar('Logged in Successfully...','close')
     }else if(username === 'Tony@gmail.com' && password === 'zaq1ZAQ!'){
       this.loginStatus=true;
       localStorage.setItem('Token','JWT Token'),
       localStorage.setItem('userrole','superAdmin')
       this._router.navigate(['dashboard'])
-      this._snackBar.open('Logged in Successfully...','close')
+      this._snackBar.openSnackBar('Logged in Successfully...','close')
     }
     else{
-      this._snackBar.open('Invalid Username or Password !!!','close')
+      this._snackBar.openSnackBar('Invalid Username or Password !!!','close')
       this._router.navigate(['/'])
     }
   }

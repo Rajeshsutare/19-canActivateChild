@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-md-4">
             <ul class="list-group my-5 text-center">
-                <li class="list-group-item" *ngFor="let u of usersInfo"
+                <li class="list-group-item" *ngFor="let u of usersInfo; let firstUser=first"
                 [routerLink]="['/users', u.userId]"
                 [queryParams]="{canEditUser : u.editStatus}"
                 (click)="isSelected = u.userId"
                 [ngClass]="
                 {
-                    'active' : isSelected === u.userId
+                    'active' : isSelected === u.userId || firstUser && !isSelected
                 }"
                 >
                     {{u.userName}}
